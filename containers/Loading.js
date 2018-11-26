@@ -8,7 +8,6 @@ class Loading extends React.Component {
 
     componentDidMount() {
         firebase.auth().onAuthStateChanged( user => {
-            console.error("action-user", user);
             this.props.checkOnAuthStateChanged(user);
         });
     }

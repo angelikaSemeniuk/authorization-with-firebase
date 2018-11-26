@@ -8,26 +8,22 @@ class Home extends React.Component {
 
     componentDidMount () {
         const { currentUser } = firebase.auth();
-        console.error("firebase.auth()",  currentUser );
         this.props.setCurrentUser(currentUser.email);
     }
 
     handleSignOut () {
-        firebase.auth().signOut().then(
-            () => {
-                console.error("action-handleSignOut");
+        firebase.auth().signOut()
+            .then( () => {
                 this.props.handleSignOutOfUser();
-            }
-        )
+            })
             .catch((error) => this.props.catchError(error))
     }
 
     render() {
-        console.error("action-authorized", this.props.authorized);
         return(
             <>
-                {!this.props.authorized ? <Redirect to="/"/> :
-                        <div className="form-navigation">
+                {!this.props.authorized  ? <Redirect to="/"/> :
+                        <div className="home-page">
                             <p dangerouslySetInnerHTML={{__html: "Welcome, " + this.props.currentUser}}></p>
                             <button onClick={this.handleSignOut.bind(this)}>Sign out</button>
                         </div>

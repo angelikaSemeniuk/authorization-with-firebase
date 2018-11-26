@@ -45,3 +45,9 @@ export function handleSignOutOfUser() {
         type: "HANDLE_SIGN_OUT"
     }
 }
+
+export function makeSubmitOnSignInForm() {
+    return {
+        type: "MAKE_SUBMIT_ON_SIGN_In"
+    }
+}

@@ -40,6 +40,13 @@ const reducer = (state = initialState, action) => {
               error: ""
           })
       }
+      case "MAKE_SUBMIT_ON_SIGN_In": {
+          return Object.assign({}, state, {
+              submit: true,
+              authorized: true,
+              error: ""
+          })
+      }
       case "SET_CURRENT_USER": {
           return Object.assign({}, state, {
               currentUser: action.value
@@ -47,9 +54,12 @@ const reducer = (state = initialState, action) => {
       }
       case "HANDLE_SIGN_OUT": {
           return Object.assign({}, state, {
+              onAuthStateChangedCalled: false,
               authorized: false,
               login: "",
-              password: ""
+              password: "",
+              currentUser: "",
+              submit: false
 
           })
       }

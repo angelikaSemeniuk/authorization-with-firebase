@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import firebase from "firebase";
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { changeLogin, changePassword, makeSubmitOnSignUpForm, catchError } from "../action";
 
 class SignUp extends React.Component {
@@ -17,14 +17,24 @@ class SignUp extends React.Component {
             <>
                 {this.props.submit ?
                     <Redirect to="/home"/> :
-                    <>
+                    <div className="sign-up">
                         {this.props.error && <p style={{color: "red"}} dangerouslySetInnerHTML={{__html: this.props.error}}></p>}
-                            <input type="text" value={this.props.login} onChange={this.props.changeLogin.bind(this)}
-                                   placeholder="Login"/>
-                            <input type="password" value={this.props.password}
-                                   onChange={this.props.changePassword.bind(this)} placeholder="Password"/>
-                            <button onClick={this.handleSignUp.bind(this)}>Submit</button>
-                    </>
+                        <p><strong>Sign Up</strong></p>
+                        <input
+                            type="text"
+                            value={this.props.login}
+                            onChange={this.props.changeLogin.bind(this)}
+                            placeholder="Login"
+                        />
+                        <input
+                            type="password"
+                            value={this.props.password}
+                            onChange={this.props.changePassword.bind(this)}
+                            placeholder="Password"
+                        />
+                        <button onClick={this.handleSignUp.bind(this)}>Submit</button>
+                        <p>Has already an account? Then click <Link to="/sign-in">Sign In</Link></p>
+                    </div>
                 }
             </>
 
