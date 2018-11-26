@@ -63,6 +63,12 @@ const reducer = (state = initialState, action) => {
 
           })
       }
+      case "HANDLE_CHANGING_THE_PAGE": {
+          return Object.assign({}, state, {
+              error: "",
+              submit: false
+          })
+      }
       default:
           return state;
   }

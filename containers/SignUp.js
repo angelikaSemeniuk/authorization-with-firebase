@@ -2,9 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import firebase from "firebase";
 import { Link, Redirect } from "react-router-dom";
-import { changeLogin, changePassword, makeSubmitOnSignUpForm, catchError } from "../action";
+import { changeLogin, changePassword, makeSubmitOnSignUpForm, catchError, handleChangingThePage } from "../action";
 
 class SignUp extends React.Component {
+
+    componentWillUnmount () {
+        this.props.handleChangingThePage();
+    }
 
     handleSignUp () {
         firebase.auth().createUserWithEmailAndPassword(this.props.login, this.props.password)
@@ -18,8 +22,8 @@ class SignUp extends React.Component {
                 {this.props.submit ?
                     <Redirect to="/home"/> :
                     <div className="sign-up">
-                        {this.props.error && <p style={{color: "red"}} dangerouslySetInnerHTML={{__html: this.props.error}}></p>}
-                        <p><strong>Sign Up</strong></p>
+                        {this.props.error && <p className="error" dangerouslySetInnerHTML={{__html: this.props.error}}></p>}
+                        <p className="header"><strong>Sign Up</strong></p>
                         <input
                             type="text"
                             value={this.props.login}
@@ -33,7 +37,7 @@ class SignUp extends React.Component {
                             placeholder="Password"
                         />
                         <button onClick={this.handleSignUp.bind(this)}>Submit</button>
-                        <p>Has already an account? Then click <Link to="/sign-in">Sign In</Link></p>
+                        <p className="footer">Has already an account? Then click <Link to="/sign-in">Sign In</Link></p>
                     </div>
                 }
             </>
@@ -64,6 +68,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         catchError: (error) => {
             dispatch(catchError(error));
+        },
+        handleChangingThePage: () => {
+            dispatch(handleChangingThePage());
         }
     }
 };

@@ -51,3 +51,9 @@ export function makeSubmitOnSignInForm() {
         type: "MAKE_SUBMIT_ON_SIGN_In"
     }
 }
+
+export function handleChangingThePage() {
+    return {
+        type: "HANDLE_CHANGING_THE_PAGE"
+    }
+}

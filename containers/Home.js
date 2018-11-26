@@ -24,8 +24,9 @@ class Home extends React.Component {
             <>
                 {!this.props.authorized  ? <Redirect to="/"/> :
                         <div className="home-page">
-                            <p dangerouslySetInnerHTML={{__html: "Welcome, " + this.props.currentUser}}></p>
+                            {this.props.error && <p className="error" dangerouslySetInnerHTML={{__html: this.props.error}}></p>}
                             <button onClick={this.handleSignOut.bind(this)}>Sign out</button>
+                            <p dangerouslySetInnerHTML={{__html: "Welcome, " + this.props.currentUser}}></p>
                         </div>
                 }
             </>
