@@ -1,6 +1,7 @@
 export function checkOnAuthStateChanged(user) {
-    return function (dispatch) {
-        dispatch({type: "CHECK_ON_AUTH_STATE_CHANGED", value: user});
+    return {
+        type: "CHECK_ON_AUTH_STATE_CHANGED",
+        value: user
     }
 }
 
@@ -30,5 +31,17 @@ export function makeSubmitOnSignUpForm() {
     return {
         type: "MAKE_SUBMIT_ON_SIGN_UP"
     }
+}
 
+export function setCurrentUser( currentUser) {
+    return {
+        type: "SET_CURRENT_USER",
+        value: currentUser
+    }
+}
+
+export function handleSignOutOfUser() {
+    return {
+        type: "HANDLE_SIGN_OUT"
+    }
 }

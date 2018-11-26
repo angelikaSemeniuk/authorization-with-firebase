@@ -4,7 +4,8 @@ const initialState = {
     login: "",
     password: "",
     error: null,
-    submit: false
+    submit: false,
+    currentUser: ""
 };
 
 const reducer = (state = initialState, action) => {
@@ -37,6 +38,19 @@ const reducer = (state = initialState, action) => {
               submit: true,
               authorized: true,
               error: ""
+          })
+      }
+      case "SET_CURRENT_USER": {
+          return Object.assign({}, state, {
+              currentUser: action.value
+          })
+      }
+      case "HANDLE_SIGN_OUT": {
+          return Object.assign({}, state, {
+              authorized: false,
+              login: "",
+              password: ""
+
           })
       }
       default:
